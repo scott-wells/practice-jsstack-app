@@ -20,16 +20,16 @@ http.createServer(function(req, res) {
     var path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
     switch(path) {
         case '':
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end('Homepage');
+            serveStaticFile(res, '/public/home.html', 'text/html');
             break;
         case '/about':
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end('About');
+            serveStaticFile(res, '/public/about.html', 'text/html');
+            break;
+        case '/img/logo.jpg':
+            serveStaticFile(res, '/public/img/logo.html', 'image/jpeg');
             break;
         default:
-            res.writeHead(404, {'Content-Type': 'text/plain'});
-            res.end('Not Found');
+            serveStaticFile(res, '/public/404.html', 'text/html')
             break;
     }
 }).listen(3000);
